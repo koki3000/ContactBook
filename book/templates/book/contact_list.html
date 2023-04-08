@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Contacts</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in object_list %}
+            <tr>
+                <td>
+                    {{contact.name}}
+                </td>
+                <td>
+                    {{contact.number}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
