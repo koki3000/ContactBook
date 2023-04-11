@@ -18,8 +18,12 @@
                 <td>
                     {{contact.number}}
                 </td>
+                <td>
+                    <a href="/contact/{{contact.id}}/update/">Edit</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a href="/contact/create/">Add new contact</a>
 {% endblock %}
