@@ -13,7 +13,7 @@
             {% for contact in object_list %}
             <tr>
                 <td>
-                    {{contact.name}}
+                    <a href="/contact/{{contact.id}}/">{{contact.name}}</a>
                 </td>
                 <td>
                     {{contact.number}}
