@@ -1,6 +1,7 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from . models import Contact
+from . forms import ContactForm
 from django.urls import path, reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -27,14 +28,14 @@ class ContactView(DetailView):
 class CreateContact(CreateView):
     
     model = Contact
-    fields = '__all__'
+    form_class = ContactForm
     template_name = 'book/contact_create_form.html'
     success_url = reverse_lazy("home")
 
 
 class UpdateContact(UpdateView):
     model = Contact
-    fields = '__all__'
+    form_class = ContactForm
     template_name = 'book/contact_update_form.html'
     success_url = reverse_lazy("home")
 
