@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Contact
+from django.contrib.auth.models import User
 
 
 class DateInput(forms.DateInput):
@@ -8,10 +9,10 @@ class DateInput(forms.DateInput):
 
 
 class ContactForm(ModelForm):
-
     class Meta:
         model = Contact
-        fields = '__all__'
+        exclude = ['owner',]
+        
         widgets = {
-            'birthday': DateInput(),
-        }
+            'birthday': DateInput(),      
+        }    
