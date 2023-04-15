@@ -1,10 +1,11 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from . models import Contact
-from . forms import ContactForm
-from django.urls import path, reverse_lazy
+from . forms import ContactForm, UserForm
+from django.urls import path, reverse_lazy, reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -54,3 +55,16 @@ class DeleteContact(LoginRequiredMixin, DeleteView):
     model = Contact
     template_name = 'book/contact_delete_form.html'
     success_url = reverse_lazy("home")
+
+
+class CreateUser(CreateView):    
+    model = User
+    form_class = UserForm
+    template_name = 'book/user_create_form.html'
+    success_url = '/accounts/login/'
+
+    def form_valid(self, form):
+        data = form.save(commit=False)
+        data.set_password(data.password)
+        data.save()
+        return super(CreateUser, self).form_valid(form)

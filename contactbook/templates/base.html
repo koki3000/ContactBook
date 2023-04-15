@@ -5,12 +5,18 @@
   </head>
   <body>
 	<hr>
+  
+  {% if user.is_authenticated %}
+  <div>
+  <h2>Hi {{user}}</h2>
+  <a href="/accounts/logout/"> Logout</a>
+  </div>  
+  {% else %}
   <div>
     <a href="/accounts/login/"> Login</a>
+    <a href="/user/create/"> Register</a>
   </div>
-  <div>
-    <a href="/accounts/logout/"> Logout</a>
-  </div>    
+  {% endif %}
   <a href="/">All contacts</a>
     {% block content %}{% endblock %}
   </body>
