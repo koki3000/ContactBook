@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {% load static %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="{% static 'contactbook/style.css' %}">
   </head>
   <body>
-	<hr>
-  
-  {% if user.is_authenticated %}
-  <div>
-  <h2>Hi {{user}}</h2>
-  <a href="/accounts/logout/"> Logout</a>
-  </div>  
-  {% else %}
-  <div>
-    <a href="/accounts/login/"> Login</a>
-    <a href="/user/create/"> Register</a>
-  </div>
-  {% endif %}
-  <a href="/">All contacts</a>
+
+    {% if user.is_authenticated %}
+      <div>
+        <span class="user">Hi {{user.first_name}}</span>
+        <a class="login" href="/accounts/logout/"> Logout</a>
+      </div>        
+      <a href="/">All contacts</a>
+    {% else %}
+      <div>
+        <a class="login" href="/user/create/"> Register </a>
+      </div>
+      <div>
+        <a class="login" href="/accounts/login/"> Login </a>
+      </div>
+    {% endif %}
+    
     {% block content %}{% endblock %}
   </body>
 </html>
