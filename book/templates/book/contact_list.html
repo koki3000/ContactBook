@@ -2,24 +2,27 @@
 
 {% block content %}
     <h2>Contacts</h2>
-    <table border="1">
+    <table id="customers">
         <thead>
             <tr>
-                <th>name</th>
-                <th>number</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for contact in object_list %}
             <tr>
                 <td>
-                    <a href="/contact/{{contact.id}}/">{{contact.name}}</a>
+                    <a>{{contact.name}}</a>
                 </td>
                 <td>
                     {{contact.number}}
                 </td>
                 <td>
+                    <a href="/contact/{{contact.id}}/">Details</a>
                     <a href="/contact/{{contact.id}}/update/">Edit</a>
+                    <a href="/contact/{{contact.id}}/delete/">Delete</a>
                 </td>
             </tr>
             {% endfor %}
